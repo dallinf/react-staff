@@ -84,7 +84,7 @@ body {
 
 .l1 {
   stroke-width: 6.1px;
-  opacity: 0;
+  opacity: 1;
 }
 
 .l2 {
@@ -96,14 +96,14 @@ body {
   stroke-width: 6.1px;
   pointer-events: none;
   stroke: black;
-  display: none;
+  display: block;
 }
 
 .l1,
 .l2,
 .ledgerLines path {
-  stroke: #000;
-  fill: #000;
+  stroke: #aa0000;
+  fill: #aa0000;
 }
 
 .TrebleClef,
