@@ -2,10 +2,97 @@ import "./Staff.css";
 
 export interface StaffProps {
   clef?: string;
+  notes: number[];
 }
 
-function Staff({ clef = "treble" }: StaffProps) {
-  console.log(clef);
+const noteHeight: { [id: number]: number } = {
+  19: 300,
+  21: 287.5,
+  23: 275,
+  24: 262.5,
+  26: 250,
+  28: 237.5,
+  29: 225,
+  31: 212.5,
+  33: 200,
+  35: 187.5,
+  36: 175,
+  38: 162.5,
+  40: 150,
+  41: 137.5,
+  43: 125,
+  45: 112.5,
+  47: 100,
+  48: 87.5,
+  50: 75,
+  52: 62.5,
+  53: 50,
+  55: 37.5,
+  57: 25,
+  59: 12.5,
+  60: 0.01,
+  62: -12.5,
+  64: -25,
+  65: -37.5,
+  67: -50,
+  69: -62.5,
+  71: -75,
+  72: -87.5,
+  74: -100,
+  76: -112.5,
+  77: -125,
+  79: -137.5,
+  81: -150,
+  83: -162.5,
+  84: -175,
+  86: -187.5,
+  88: -200,
+  89: -212.5,
+  91: -225,
+  93: -237.5,
+  95: -250,
+  96: -262.5,
+  98: -275,
+  100: -287.5,
+  101: -300,
+  103: -312.5,
+  105: -325,
+  107: -337.5,
+  108: -350,
+  110: -362.5,
+  112: -375,
+  113: -387.5,
+  115: -400,
+  117: -412.5,
+  119: -425,
+  120: -437.5,
+  122: -450,
+  124: -462.5,
+  125: -475,
+  127: -487.5,
+};
+
+function Staff({ clef = "treble", notes }: StaffProps) {
+  console.log(clef, notes);
+  let viewBox = "0 290 230 260"; // viewBox for SVG
+
+  switch (clef) {
+    case "grand":
+      viewBox = "0 320 250 360";
+      break;
+    case "treble":
+      viewBox = "0 295 230 260";
+      break;
+    case "bass":
+      viewBox = "0 445 230 260";
+      break;
+    case "alto":
+      viewBox = "0 370 230 260";
+      break;
+    case "tenor":
+      viewBox = "0 395 230 260";
+      break;
+  }
   //   return (
   //     <svg height="210" width="400">
   //       <path className="l1" d="M 0, 12.5 L 10000, 12.5" />
@@ -19,7 +106,7 @@ function Staff({ clef = "treble" }: StaffProps) {
   //     </svg>
   //   );
   return (
-    <svg style={{ width: "100%", height: "100%" }}>
+    <svg style={{ width: "100%", height: "100%" }} viewBox={viewBox}>
       <g>
         {/* <path className="l1" id="G10" d="M 0,  12.5   L 10000,  12.5" /> */}
         {/* <path className="l1" id="Gb10" d="M 0,  18.75  L 10000,  18.75" /> */}
@@ -71,20 +158,30 @@ function Staff({ clef = "treble" }: StaffProps) {
         {/* <path className="l1" id="Ab6" d="M 0,  356.25 L 10000,  356.25" /> */}
         {/* <path className="l1" id="G6" d="M 0,  362.5  L 10000,  362.5" /> */}
         {/* <path className="l1" id="Gb6" d="M 0,  368.75 L 10000,  368.75" /> */}
-        <path className="l1" id="F6" d="M 0,  375    L 10000,  375" />
+        {clef === "treble" && (
+          <path className="l1" id="F6" d="M 0,  375    L 10000,  375" />
+        )}
         {/* <path className="l2" id="E6" d="M 0,  383    L 10000,  383" /> */}
         {/* <path className="l2" id="Eb6" d="M 0,  392.5  L 10000,  392.5" /> */}
-        <path className="l1" id="D6" d="M 0,  400    L 10000,  400" />
+        {clef === "treble" && (
+          <path className="l1" id="D6" d="M 0,  400    L 10000,  400" />
+        )}
         {/* <path className="l2" id="Db6" d="M 0,  408    L 10000,  408" /> */}
         {/* <path className="l2" id="C6" d="M 0,  417.5  L 10000,  417.5" /> */}
-        <path className="l1" id="B5" d="M 0,  425    L 10000,  425" />
+        {clef === "treble" && (
+          <path className="l1" id="B5" d="M 0,  425    L 10000,  425" />
+        )}
         {/* <path className="l1" id="Bb5" d="M 0,  431.25 L 10000,  431.25" /> */}
         {/* <path className="l1" id="A5" d="M 0,  437.5  L 10000,  437.5" /> */}
         {/* <path className="l1" id="Ab5" d="M 0,  443.75 L 10000,  443.75" /> */}
-        <path className="l1" id="G5" d="M 0,  450    L 10000,  450" />
+        {clef === "treble" && (
+          <path className="l1" id="G5" d="M 0,  450    L 10000,  450" />
+        )}
         {/* <path className="l2" id="Gb5" d="M 0,  458    L 10000,  458" /> */}
         {/* <path className="l2" id="F5" d="M 0,  467.5  L 10000,  467.5" /> */}
-        <path className="l1" id="E5" d="M 0,  475    L 10000,  475" />
+        {clef === "treble" && (
+          <path className="l1" id="E5" d="M 0,  475    L 10000,  475" />
+        )}
         {/* <path className="l1" id="Eb5" d="M 0,  481.25 L 10000,  481.25" /> */}
         {/* <path className="l1" id="D5" d="M 0,  487.5  L 10000,  487.5" /> */}
         {/* <path className="l1" id="Db5" d="M 0,  493.75 L 10000,  493.75" /> */}
@@ -164,14 +261,23 @@ function Staff({ clef = "treble" }: StaffProps) {
           <path id="b1L" d="M 135,775 L 205, 775" />
           <path id="g1L" d="M 135,800 L 205, 800" />
         </g> */}
-        <g className="noteGroup">
-          <g transform="translate(0, 500 500)">
-            <text className="note" transform="translate(125 500)">
-              a
-            </text>
-          </g>
-        </g>
 
+        <g className="noteGroup">
+          {notes.map((note) => {
+            const notePlacement = noteHeight[note];
+            const transformGroup = `translate(0, ${500 + notePlacement})`;
+
+            console.log("transformgroup", note, notePlacement, transformGroup);
+
+            return (
+              <g className="noteG" transform={transformGroup}>
+                <text className="note" transform="translate(145, 0)">
+                  a
+                </text>
+              </g>
+            );
+          })}
+        </g>
         <g id="clefs">
           {/* <rect className="trebleRect" x="3" y="325" width="70" height="190" /> */}
           {/* <rect className="altoRect" x="3" y="450" width="70" height="100" /> */}
