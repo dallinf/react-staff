@@ -1,9 +1,13 @@
-import { useState } from "react";
 import "./Staff.css";
 
 export interface StaffProps {
   clef?: string;
   notes: number[];
+}
+
+export interface Note {
+  value: number;
+  id: number;
 }
 
 const noteHeight: { [id: number]: number } = {
@@ -74,9 +78,6 @@ const noteHeight: { [id: number]: number } = {
 };
 
 function Staff({ clef = "treble", notes }: StaffProps) {
-  const [allowMoveNote, setAllowMoveNote] = useState(false);
-
-  console.log(clef, notes);
   let viewBox = "0 290 230 260"; // viewBox for SVG
 
   switch (clef) {
@@ -97,71 +98,33 @@ function Staff({ clef = "treble", notes }: StaffProps) {
       break;
   }
 
-  const mouseDown = (e: any) => {
-    setAllowMoveNote(true);
-  };
+  const trebleLines = [
+    { id: "F6", note: 77, height: 375 },
+    { id: "D6", note: 74, height: 400 },
+    { id: "B5", note: 71, height: 425 },
+    { id: "G5", note: 67, height: 450 },
+    { id: "E5", note: 64, height: 475 },
+  ];
 
-  const mouseMove = (e: any) => {
-    if (allowMoveNote) {
-      // console.log(e, "mousemove");
-    }
-  };
-
-  const mouseUp = (e: any) => {
-    setAllowMoveNote(false);
-  };
-
-  const mouseClick = (e: any) => {
-    console.log("mouseclick", e.clientY);
-
-    const clickLocation = e.clientY - 500;
-    let bestNoteHeight = 0;
-    let bestFit = 500;
-
-    Object.values(noteHeight).forEach((height) => {
-      const currentFit = Math.abs(height - clickLocation);
-      if (currentFit < bestFit) {
-        bestFit = currentFit;
-        bestNoteHeight = height;
-      }
-    });
-
-    console.log("best", bestNoteHeight);
-
-    const newNote = Object.keys(noteHeight)
-      .map((key: string) => Number(key))
-      .filter((key: number) => noteHeight[key] === bestNoteHeight);
-
-    console.log(newNote);
-  };
-
-  const moveNote = (e: any) => {
-    console.log(e.clientY);
-  };
-  //   return (
-  //     <svg height="210" width="400">
-  //       <path className="l1" d="M 0, 12.5 L 10000, 12.5" />
-  //     </svg>
-  //   );
-  //   return (
-  //     <svg>
-  //       <g>
-  //         <path d="M 0, 12.5 L 10000, 12.5" />
-  //       </g>
-  //     </svg>
-  //   );
   return (
     <div className="staff">
       <svg
         id="myStaff"
         // style={{ width: "100%", height: "100%" }}
         viewBox={viewBox}
-        onMouseDown={mouseDown}
-        onMouseUp={mouseUp}
-        onMouseMove={mouseMove}
-        onClick={mouseClick}
       >
         <g>
+          {trebleLines.map((line) => {
+            return (
+              <path
+                key={line.id}
+                className="l1"
+                id={line.id}
+                d={`M 0,  ${line.height}  L 10000, ${line.height}`}
+              ></path>
+            );
+          })}
+
           {/* <path className="l1" id="G10" d="M 0,  12.5   L 10000,  12.5" /> */}
           {/* <path className="l1" id="Gb10" d="M 0,  18.75  L 10000,  18.75" /> */}
           {/* <path className="l2" id="F10" d="M 0,  25     L 10000,  25" /> */}
@@ -212,30 +175,32 @@ function Staff({ clef = "treble", notes }: StaffProps) {
           {/* <path className="l1" id="Ab6" d="M 0,  356.25 L 10000,  356.25" /> */}
           {/* <path className="l1" id="G6" d="M 0,  362.5  L 10000,  362.5" /> */}
           {/* <path className="l1" id="Gb6" d="M 0,  368.75 L 10000,  368.75" /> */}
-          {clef === "treble" && (
+
+          {/* {clef === "treble" && (
             <path className="l1" id="F6" d="M 0,  375    L 10000,  375" />
-          )}
+          )} */}
+
           {/* <path className="l2" id="E6" d="M 0,  383    L 10000,  383" /> */}
           {/* <path className="l2" id="Eb6" d="M 0,  392.5  L 10000,  392.5" /> */}
-          {clef === "treble" && (
+          {/* {clef === "treble" && (
             <path className="l1" id="D6" d="M 0,  400    L 10000,  400" />
-          )}
+          )} */}
           {/* <path className="l2" id="Db6" d="M 0,  408    L 10000,  408" /> */}
           {/* <path className="l2" id="C6" d="M 0,  417.5  L 10000,  417.5" /> */}
-          {clef === "treble" && (
+          {/* {clef === "treble" && (
             <path className="l1" id="B5" d="M 0,  425    L 10000,  425" />
-          )}
+          )} */}
           {/* <path className="l1" id="Bb5" d="M 0,  431.25 L 10000,  431.25" /> */}
           {/* <path className="l1" id="A5" d="M 0,  437.5  L 10000,  437.5" /> */}
           {/* <path className="l1" id="Ab5" d="M 0,  443.75 L 10000,  443.75" /> */}
-          {clef === "treble" && (
+          {/* {clef === "treble" && (
             <path className="l1" id="G5" d="M 0,  450    L 10000,  450" />
-          )}
+          )} */}
           {/* <path className="l2" id="Gb5" d="M 0,  458    L 10000,  458" /> */}
           {/* <path className="l2" id="F5" d="M 0,  467.5  L 10000,  467.5" /> */}
-          {clef === "treble" && (
+          {/* {clef === "treble" && (
             <path className="l1" id="E5" d="M 0,  475    L 10000,  475" />
-          )}
+          )} */}
           {/* <path className="l1" id="Eb5" d="M 0,  481.25 L 10000,  481.25" /> */}
           {/* <path className="l1" id="D5" d="M 0,  487.5  L 10000,  487.5" /> */}
           {/* <path className="l1" id="Db5" d="M 0,  493.75 L 10000,  493.75" /> */}
@@ -331,27 +296,13 @@ function Staff({ clef = "treble", notes }: StaffProps) {
               const notePlacement = noteHeight[note];
               const transformGroup = `translate(0, ${500 + notePlacement})`;
 
-              console.log(
-                "transformgroup",
-                note,
-                notePlacement,
-                transformGroup
-              );
-
               return (
                 <g
                   key={`note-${note}`}
                   className="noteG"
                   transform={transformGroup}
-                  onClick={(e) => console.log("mouseclick", e)}
-                  onMouseDown={moveNote}
-                  onMouseUp={moveNote}
                 >
-                  <text
-                    className="note"
-                    transform="translate(145, 0)"
-                    onClick={(e) => console.log("e mouseclick", e)}
-                  >
+                  <text className="note" transform="translate(145, 0)">
                     a
                   </text>
                 </g>

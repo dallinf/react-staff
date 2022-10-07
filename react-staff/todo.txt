@@ -1,7 +1,8 @@
 scope the css
-move notes with the mouse
+move notes with the mouse - using mouseover
+ -- punt on this, not part of MVP
 bass clef
 grand clef?
 alto clef
 tenor clef
-get sizing right
+ledger lines
