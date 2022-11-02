@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="app-staff">
-          <Staff clef="treble" notes={[60, 65]} />
+          <Staff clef="treble" notes={[55, 60, 65]} />
           {/* <Staff clef="bass" notes={[48, 50]} /> */}
         </div>
       </header>

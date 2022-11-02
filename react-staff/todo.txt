@@ -5,4 +5,3 @@ bass clef
 grand clef?
 alto clef
 tenor clef
-ledger lines
