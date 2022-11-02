@@ -1,7 +1,6 @@
 scope the css
 move notes with the mouse - using mouseover
  -- punt on this, not part of MVP
-bass clef
 grand clef?
-alto clef
-tenor clef
+Pass in notes by name? e.g. A5
+Have all notes in a map by name?

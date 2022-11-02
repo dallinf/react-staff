@@ -107,9 +107,23 @@ function Staff({ clef = "treble", notes }: StaffProps) {
       break;
     case "alto":
       viewBox = "0 370 230 260";
+      lines = [
+        { id: "G5", note: 67, height: 450 },
+        { id: "E5", note: 64, height: 475 },
+        { id: "C5", note: 60, height: 500 },
+        { id: "A4", note: 57, height: 525 },
+        { id: "F4", note: 53, height: 550 },
+      ];
       break;
     case "tenor":
       viewBox = "0 395 230 260";
+      lines = [
+        { id: "E5", note: 64, height: 475 },
+        { id: "C5", note: 60, height: 500 },
+        { id: "A4", note: 57, height: 525 },
+        { id: "F4", note: 53, height: 550 },
+        { id: "D4", note: 50, height: 575 },
+      ];
       break;
   }
 
